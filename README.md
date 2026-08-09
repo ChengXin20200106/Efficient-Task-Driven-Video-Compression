@@ -124,9 +124,7 @@ The training procedure contains three stages.
 
 The video compression backbone is pretrained using a conventional rate–distortion objective:
 
-$
-\mathcal{L}_{RD}=R+\lambda D
-$
+$\mathcal{L}_{RD}=R+\lambda D$
 
 where $R$ denotes the coding rate, $D$ denotes the reconstruction distortion, and $\lambda$ controls the rate–distortion trade-off.
 
