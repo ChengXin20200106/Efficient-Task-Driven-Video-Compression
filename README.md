@@ -151,37 +151,17 @@ The pretrained compression backbone and downstream task network are jointly opti
 
 The joint objective follows an uncertainty-based adaptive weighting formulation:
 
-$
-\mathcal{L}_{joint}
-=
-\frac{1}{2s_r^2}\mathcal{L}_{RD}
-+
-\log(1+s_r^2)
-+
-\frac{1}{2s_t^2}\mathcal{L}_{task}
-+
-\log(1+s_t^2)
-$
+$\mathcal{L}_{joint}=\frac{1}{2s_r^2}\mathcal{L}_{RD}+\log(1+s_r^2)+\frac{1}{2s_t^2}\mathcal{L}_{task}+\log(1+s_t^2)$
 
 where $s_r$ and $s_t$ are learnable scale parameters associated with the rate–distortion objective and downstream task objective, respectively.
 
 During Stage III, the reconstruction distortion is modeled using the Charbonnier loss:
 
-$
-\mathcal{L}_{Charb}(\hat{x},x)
-=
-\frac{1}{N}
-\sum_p
-\sqrt{(\hat{x}_p-x_p)^2+\epsilon^2}
-$
+$\mathcal{L}_{Charb}(\hat{x},x)=\frac{1}{N}\sum_p\sqrt{(\hat{x}_p-x_p)^2+\epsilon^2}$
 
 The corresponding rate–distortion objective is:
 
-$
-\mathcal{L}_{RD}
-=
-R+\lambda_{charb}\mathcal{L}_{Charb}
-$
+$\mathcal{L}_{RD}=R+\lambda_{charb}\mathcal{L}_{Charb}$
 
 The Charbonnier formulation reduces the excessive influence of relatively large reconstruction errors on shared-parameter updates and provides a more robust reconstruction constraint during joint optimization.
 
@@ -329,23 +309,17 @@ After pretraining the compression backbone and downstream task network independe
 
 For the Charbonnier reconstruction loss:
 
-$$
-\epsilon=1\times10^{-3}
-$$
+$\epsilon=1\times10^{-3}$
 
 The four rate points use:
 
-$
-\lambda_{charb}=[4096,\ 2048,\ 1024,\ 512]
-$
+$\lambda_{charb}=[4096,\ 2048,\ 1024,\ 512]$
 
 These values are kept fixed across all downstream tasks.
 
 The learnable scale parameters are initialized as:
 
-$
-s_r=1.0,\qquad s_t=1.0
-$
+$s_r=1.0,\qquad s_t=1.0$
 
 ---
 
